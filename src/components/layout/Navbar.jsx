@@ -1,4 +1,17 @@
 export default function Navbar({ currentUserRole, onRoleChange }) {
+  const getRoleUser = () => {
+    switch (currentUserRole) {
+      case 'SUPER_ADMIN':
+        return { name: 'Alex Morgan', tag: 'Super Admin', avatar: 'SA', bg: '#1e293b' };
+      case 'MANAGER':
+        return { name: 'Sarah Jenkins', tag: 'Manager (Acme Tech)', avatar: 'SJ', bg: '#047857' };
+      default:
+        return { name: 'John Doe', tag: 'Employee', avatar: 'JD', bg: '#4f46e5' };
+    }
+  };
+
+  const user = getRoleUser();
+
   return (
     <header className="hrms-navbar">
       <div className="navbar-brand">
@@ -23,17 +36,18 @@ export default function Navbar({ currentUserRole, onRoleChange }) {
             className="role-sim-select"
             title="Switch User Role for Access Testing"
           >
-            <option value="SUPER_ADMIN">Super Admin (Full Access)</option>
-            <option value="EMPLOYEE">Regular Employee (Restricted)</option>
+            <option value="SUPER_ADMIN">Super Admin (Org Owner)</option>
+            <option value="MANAGER">Manager (Sarah Jenkins)</option>
+            <option value="EMPLOYEE">Employee (John Doe)</option>
           </select>
         </div>
 
         {/* User Profile Badge */}
         <div className="user-profile-badge">
-          <div className="avatar">SA</div>
+          <div className="avatar" style={{ backgroundColor: user.bg }}>{user.avatar}</div>
           <div className="user-info">
-            <span className="user-name">Alex Morgan</span>
-            <span className="user-role-tag">Super Admin</span>
+            <span className="user-name">{user.name}</span>
+            <span className="user-role-tag">{user.tag}</span>
           </div>
         </div>
       </div>

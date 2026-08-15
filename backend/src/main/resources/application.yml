@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: hrms-backend
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/hrms_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+jwt:
+  secret: 9a6f8b1234567890abcdef1234567890abcdef1234567890abcdef1234567890
+  expirationMs: 86400000
+
+logging:
+  level:
+    root: INFO
+    com.hrms: DEBUG
+    org.springframework.security: DEBUG
